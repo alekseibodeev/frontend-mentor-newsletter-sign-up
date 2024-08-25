@@ -181,16 +181,42 @@ body {
 
 .dialog {
   max-width: 100%;
-  min-height: 100vh;
+  max-height: 100%;
   border: none;
+  transition: display 0.25s allow-discrete, overlay 0.25s allow-discrete;
+  animation: close 0.25s ease forwards;
+}
+
+.dialog[open] {
+  animation: open 0.25s ease forwards;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .success-dialog {
   color: var(--clr-slate-950);
   background-color: var(--clr-white);
+  min-height: 100vh;
   padding: 2.5rem 1.5rem;
   display: grid;
-  grid-template-rows: 100vh auto;
+  grid-template-rows: 1fr auto;
+  isolation: isolate;
 }
 
 .success-dialog__content {
