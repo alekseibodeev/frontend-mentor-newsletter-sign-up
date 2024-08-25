@@ -50,7 +50,7 @@ button {
   --fs-200: 0.75rem;
   --fs-400: 1rem;
   --fs-700: 2.5rem;
-  --fs-800: 3rem;
+  --fs-800: 3.5rem;
 
   --fw-regular: 400;
   --fw-bold: 700;
@@ -65,9 +65,18 @@ body {
   line-height: 1.5;
 }
 
+.container {
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+/* .container_content_center {
+} */
+
 .newsletter-signup {
   color: var(--clr-slate-950);
   background-color: var(--clr-white);
+  display: grid;
 }
 
 .newsletter-signup__cover {
@@ -194,18 +203,22 @@ body {
 @keyframes open {
   from {
     opacity: 0;
+    transform: translateX(-100%);
   }
   to {
     opacity: 1;
+    transform: translateX(0%);
   }
 }
 
 @keyframes close {
   from {
     opacity: 1;
+    transform: translateX(0%);
   }
   to {
     opacity: 0;
+    transform: translateX(100%);
   }
 }
 
@@ -233,4 +246,59 @@ body {
 
 .success-dialog__email {
   font-weight: var(--fw-bold);
+}
+
+@media screen and (min-width: 40rem) and (max-width: 58rem) {
+  .newsletter-signup__cover {
+    aspect-ratio: 2;
+  }
+}
+
+@media screen and (min-width: 58rem) {
+  .container {
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+  }
+
+  .newsletter-signup {
+    padding: 1.5rem;
+    border-radius: 2rem;
+    grid-template-columns: [content-start] 1.25fr [content-end cover-start] 1fr [cover-end];
+  }
+
+  .newsletter-signup__cover {
+    grid-area: cover;
+  }
+
+  .newsletter-signup__content {
+    grid-area: content;
+    align-content: start;
+    padding: 3rem;
+  }
+
+  .newsletter-signup__title {
+    font-size: var(--fs-800);
+  }
+
+  .dialog {
+    max-width: 32rem;
+    margin: auto;
+    border-radius: 2rem;
+  }
+
+  .dialog::backdrop {
+    transition: all 0.25s ease;
+    background-color: var(--clr-slate-950);
+  }
+
+  .success-dialog {
+    min-height: unset;
+    padding: 4rem;
+    gap: 2rem;
+  }
+
+  .success-dialog__title {
+    font-size: var(--fs-800);
+  }
 }
